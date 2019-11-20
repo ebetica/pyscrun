@@ -1,0 +1,19 @@
+#!python
+import argparse
+import os
+import sys
+from os import path
+
+parser = argparse.ArgumentParser()
+parser.add_argument('file', type=str)
+args, _ = parser.parse_known_args()
+
+if not path.exists(args.file):
+	  raise RuntimeError("No such file: " + args.file)
+head, _ = path.split(path.abspath(args.file[:-3]))
+while path.exists(path.join(head, '__init__.py')):
+    head, _ = path.split(head)
+
+env = os.environ
+env['PYTHONPATH'] = head + ':' + env.get('PYTHONPATH', '')
+os.execle(sys.executable, sys.executable, *sys.argv[1:], env)
