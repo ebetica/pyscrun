@@ -22,7 +22,7 @@ from pkg.utils import stuff
 
 If I execute it from any other directory, this will fail.
 
-*pyscrun hacks the PYTHONPATH to find the root package path, the first one without __init__.py*
+*pyscrun hacks the PYTHONPATH to find the root package path, the first one without `__init__.py`*
 
 so 
 
